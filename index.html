@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saanvi's Game</title>
+    <style>
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .selection-container {
+            display: none;
+        }
+
+        .number-container {
+            display: none;
+        }
+
+        .result-container {
+            display: none;
+        }
+
+        .number-images img {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        p {
+            color: blue;
+            font-size: 40px;
+        }
+
+        .big-button {
+            color: green;
+            font-size: 80px;
+        }
+
+        .small-button {
+            color: green;
+            font-size: 50px;
+            padding: 10px;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="start-container">
+            <p>Saanvi's Game</p>
+            <button onclick="startSelection()" class="big-button">Go Start</button>
+        </div>
+        <div class="selection-container" id="genderSelection">
+            <p>Select Gender</p>
+            <img src="img/boy.png" alt="Boy" style="height: 300px; width: 250px; padding-bottom: 30px;"
+                onclick="selectGender('Boy')">
+            <img src="img/girl.png" alt="Girl" style="height: 300px; width: 250px;" onclick="selectGender('Girl')">
+        </div>
+        <div class="number-container" id="numberSelection">
+            <p>Select A Number</p>
+            <div class="number-images">
+                <button onclick="selectNumber(1)" class="small-button">1</button>
+                <button onclick="selectNumber(2)" class="small-button">2</button>
+                <button onclick="selectNumber(3)" class="small-button">3</button>
+                <button onclick="selectNumber(4)" class="small-button">4</button>
+                <button onclick="selectNumber(5)" class="small-button">5</button>
+                <button onclick="selectNumber(6)" class="small-button">6</button>
+                <button onclick="selectNumber(7)" class="small-button">7</button>
+                <button onclick="selectNumber(8)" class="small-button">8</button>
+                <button onclick="selectNumber(9)" class="small-button">9</button>
+                <button onclick="selectNumber(10)" class="small-button">10</button>
+            </div>
+        </div>
+        <div class="result-container" id="result">
+            <p>Your Selection:</p>
+            <p id="genderResult"></p>
+            <p id="numberResult"></p>
+            <p>Result:</p>
+            <p><img id="imgResult" style="height: 200px; width: 200px;" /></p>
+            <button onclick="reloadPage()" class="big-button">Restart</button>
+        </div>
+    </div>
+
+    <script>
+        function startSelection() {
+            document.querySelector('.start-container').style.display = "none";
+            document.getElementById("genderSelection").style.display = "block";
+        }
+
+        function selectGender(gender) {
+            document.getElementById("genderSelection").style.display = "none";
+            document.getElementById("numberSelection").style.display = "block";
+            sessionStorage.setItem("selectedGender", gender);
+        }
+
+        function selectNumber(number) {
+            document.getElementById("numberSelection").style.display = "none";
+            document.getElementById("result").style.display = "block";
+            var selectedGender = sessionStorage.getItem("selectedGender");
+            document.getElementById("genderResult").innerText = "Gender: " + selectedGender;
+            document.getElementById("numberResult").innerText = "Number: " + number;
+            var imgElement = document.getElementById('imgResult');
+            imgElement.src = "img/" + number + '.png';
+        }
+        function reloadPage() {
+            location.reload();
+        }
+    </script>
+
+</body>
+
+</html>
