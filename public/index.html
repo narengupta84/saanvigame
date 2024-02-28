@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Saanvi's Game</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="manifest" href="manifest.json">
     <script>
 
         $(document).ready(function () {
@@ -40,6 +41,10 @@
         });
     </script>
 
+   <!-- BEGIN  PWA -->
+   <script src="src/js/app.js"></script>
+   <!-- END  PWA -->
+   
     <style>
         .container {
             text-align: center;
@@ -148,7 +153,10 @@
             imgElement.src = "img/" + number + '.png';
         }
         function reloadPage() {
-            location.reload();
+            document.querySelector('.start-container').style.display = "block";
+            document.getElementById("genderSelection").style.display = "none";
+            document.getElementById("numberSelection").style.display = "none";
+            document.getElementById("result").style.display = "none";
         }
     </script>
 
